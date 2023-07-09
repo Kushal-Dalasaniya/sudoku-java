@@ -1,0 +1,103 @@
+get:
+  tags : 
+  - sudoku-game
+  operationId: startSudoku
+  summary : This API for a start game
+  
+  description :  This API for a start game
+  
+  parameters : 
+     - $ref: '../common/common-requestheaders.yaml#/Accept'
+     - $ref: '../common/common-requestheaders.yaml#/CorrelationId'
+     
+  responses:
+     '200':
+       description: Successfull
+       headers :
+          correlationId:
+            schema :
+              type: string
+            description: "Helps in getting the flow of the request when we log the correlationld"
+       content :
+            application/json:
+              schema :
+                $ref: '#/components/schemas/SudokuGameMatrix'
+       
+
+     '400':
+        description: Invalid Input
+        headers :
+          CorrelationId:
+            schema :
+               type: string
+            description: "Helps in getting the flow of the request when we log the correlationid"
+        content :
+            application/json:
+              schema :
+                $ref: '../common/error-response.yaml'
+               
+     '404':
+         description: Resource not Found
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+     
+     '500':
+         description: Internal Server Error
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+      
+     '503':
+         description: Service request currently not available
+         headers :
+           CorrelationId:
+             schema :
+                type: string
+             description: "Helps in getting the flow of the request when ve log the correlationid"
+         content :
+             application/json:
+                schema :
+                  $ref: '../common/error-response.yaml'
+                  
+                  
+components:
+  schemas : 
+    SudokuGameMatrix : 
+       title : SudokuGameMatrix
+       type : object
+       properties:
+          matrixId :
+            type: integer
+            example: 1
+          missingDigits: 
+            type: integer
+            example: 1
+          matrix: 
+            type: array
+            maxItems: 10
+            items:
+               type: array
+               items:
+                 type : integer
+                 minimum: 1
+                 maximum: 9
+               maxItems: 10
+                 
+
+            
+            
+     

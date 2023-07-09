@@ -1,0 +1,21 @@
+openapi: 3.0.0
+
+info :
+  version : 0.0.1
+  title : sodoku-api
+  description :
+    API for sudoku game
+    
+paths :
+   '/sudoku/start':
+     $ref : "./sudoku/sudoku-start.yaml"
+   
+   '/sudoku/add/{matrixId}':
+     $ref : "./sudoku/sudoku-add-value.yaml"
+     
+   '/sudoku/{matrixId}':
+     $ref : "./sudoku/sudoku-get.yaml"
+     
+   '/sudoku/new':
+     $ref : "./sudoku/sudoku-new.yaml"
+
